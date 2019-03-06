@@ -3,6 +3,7 @@ module dpwm
     input i_clk,
     input reset,
     input enable,
+    output o_cntrl_ts_last,
     output c1,
     output c2
 );
@@ -43,6 +44,6 @@ module dpwm
 
     assign c1 = enable & (cntrl_ton & (~cntrl_dt1_on));
     assign c2 = enable & ~(c1 | cntrl_dt2_on | cntrl_dt1_on);
-
+    assign o_cntrl_ts_last = cntrl_ts_last; 
 
 endmodule

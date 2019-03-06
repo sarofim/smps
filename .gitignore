@@ -45,14 +45,13 @@ timing
 *.sof
 *.sopc_builder
 *.summary
-*.tcl
 *.txt # Explicitly add any text files used
 *~
 *example*
 *sopc_*
 PLLJ_PLLSPE_INFO.txt # The generated PLL specification file
 
-#modelsim
+# modelsim
 */work
 /work
 */*/work
@@ -61,3 +60,6 @@ vsim.wlf
 c5_pin_model_dump.txt
 de1soc_assignment_defaults.qdf
 de1soc.sld
+
+# macOS
+.DS_Store

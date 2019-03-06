@@ -43,29 +43,29 @@ module dpwm_gen(
         endcase
 
         case(i_dt1)
-            0: dp_dt1 <= 4'd1;  
-            1: dp_dt1 <= 4'd3;
-            2: dp_dt1 <= 4'd5;
-            3: dp_dt1 <= 4'd7;
-            4: dp_dt1 <= 4'd9;
-            5: dp_dt1 <= 4'd11;
-            6: dp_dt1 <= 4'd13;
-            7: dp_dt1 <= 4'd15;
-            8: dp_dt1 <= 4'd17;
-            9: dp_dt1 <= 4'd19;
+            0: dp_dt1 <= 4'd2;  
+            1: dp_dt1 <= 4'd4;
+            2: dp_dt1 <= 4'd6;
+            3: dp_dt1 <= 4'd8;
+            4: dp_dt1 <= 4'd10;
+            5: dp_dt1 <= 4'd12;
+            6: dp_dt1 <= 4'd14;
+            7: dp_dt1 <= 4'd16;
+            8: dp_dt1 <= 4'd18;
+            9: dp_dt1 <= 4'd20;
         endcase
 
         case(i_dt2)
-            0: dp_dt2 <= 4'd1;  
-            1: dp_dt2 <= 4'd3;
-            2: dp_dt2 <= 4'd5;
-            3: dp_dt2 <= 4'd7;
-            4: dp_dt2 <= 4'd9;
-            5: dp_dt2 <= 4'd11;
-            6: dp_dt2 <= 4'd13;
-            7: dp_dt2 <= 4'd15;
-            8: dp_dt2 <= 4'd17;
-            9: dp_dt2 <= 4'd19;
+            0: dp_dt1 <= 4'd2;  
+            1: dp_dt1 <= 4'd4;
+            2: dp_dt1 <= 4'd6;
+            3: dp_dt1 <= 4'd8;
+            4: dp_dt1 <= 4'd10;
+            5: dp_dt1 <= 4'd12;
+            6: dp_dt1 <= 4'd14;
+            7: dp_dt1 <= 4'd16;
+            8: dp_dt1 <= 4'd18;
+            9: dp_dt1 <= 4'd20;
         endcase
     end
     
@@ -75,8 +75,8 @@ module dpwm_gen(
     //mux dp_ton_sel : can change during Ts (switching cycle)
     always@(posedge clk_200) begin
         case(dp_duty)
-            0: dp_ton_sel <= 12'd0;
-            1: begin
+            //0: dp_ton_sel <= 12'd0;
+            0: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd200;
                     1: dp_ton_sel <= 12'd156;
@@ -91,7 +91,7 @@ module dpwm_gen(
                 endcase
               end
             
-            2: begin
+            1: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd400;
                     1: dp_ton_sel <= 12'd313;
@@ -106,7 +106,7 @@ module dpwm_gen(
                 endcase
                end
             
-            3: begin
+            2: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd600;
                     1: dp_ton_sel <= 12'd469;
@@ -121,7 +121,7 @@ module dpwm_gen(
                 endcase
                end 
             
-            4: begin
+            3: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd800;
                     1: dp_ton_sel <= 12'd625;
@@ -136,7 +136,7 @@ module dpwm_gen(
                 endcase
                end
             
-            5: begin
+            4: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd1000;
                     1: dp_ton_sel <= 12'd781;
@@ -151,7 +151,7 @@ module dpwm_gen(
                 endcase
                end
             
-            6: begin
+            5: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd1200;
                     1: dp_ton_sel <= 12'd938;
@@ -166,7 +166,7 @@ module dpwm_gen(
                 endcase
                end
             
-            7: begin
+            6: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd1400;
                     1: dp_ton_sel <= 12'd1094;
@@ -181,7 +181,7 @@ module dpwm_gen(
                 endcase
                end
             
-            8: begin
+            7: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd1600;
                     1: dp_ton_sel <= 12'd1250;
@@ -196,7 +196,7 @@ module dpwm_gen(
                 endcase
                end
             
-            9: begin
+            8: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd1800;
                     1: dp_ton_sel <= 12'd1406;
@@ -211,7 +211,7 @@ module dpwm_gen(
                 endcase
                end
 
-            10: begin
+            9: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd2000;
                     1: dp_ton_sel <= 12'd1563;
@@ -226,7 +226,7 @@ module dpwm_gen(
                 endcase
                end
 
-            11: begin
+            10: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd2200;
                     1: dp_ton_sel <= 12'd1719;
@@ -241,7 +241,7 @@ module dpwm_gen(
                 endcase
                end
                
-            12: begin
+            11: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd2400;
                     1: dp_ton_sel <= 12'd1875;
@@ -256,7 +256,7 @@ module dpwm_gen(
                 endcase
                end
                
-            13: begin
+            12: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd2600;
                     1: dp_ton_sel <= 12'd2031;
@@ -271,7 +271,7 @@ module dpwm_gen(
                 endcase
                end
                
-            14: begin
+            13: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd2800;
                     1: dp_ton_sel <= 12'd2188;
@@ -286,7 +286,7 @@ module dpwm_gen(
                 endcase
                end
                
-            15: begin
+            14: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd3000;
                     1: dp_ton_sel <= 12'd2344;
@@ -301,7 +301,7 @@ module dpwm_gen(
                 endcase
                end
                
-            16: begin
+            15: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd3200;
                     1: dp_ton_sel <= 12'd2500;
@@ -316,7 +316,7 @@ module dpwm_gen(
                 endcase
                end
                
-            17: begin
+            16: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd3400;
                     1: dp_ton_sel <= 12'd2656;
@@ -331,7 +331,7 @@ module dpwm_gen(
                 endcase
                end
                
-            18: begin
+            17: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd3600;
                     1: dp_ton_sel <= 12'd2813;
@@ -346,7 +346,7 @@ module dpwm_gen(
                 endcase
                end
                
-            19: begin
+            18: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd3800;
                     1: dp_ton_sel <= 12'd2969;
@@ -361,7 +361,7 @@ module dpwm_gen(
                 endcase
                end
                
-            20: begin
+            19: begin
                 case(i_fs)
                     0: dp_ton_sel <= 12'd4000;
                     1: dp_ton_sel <= 12'd3125;
@@ -375,7 +375,7 @@ module dpwm_gen(
                     9: dp_ton_sel <= 12'd1000;
                 endcase
                end
-    
+
         endcase
     end
 
