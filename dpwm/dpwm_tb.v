@@ -23,9 +23,9 @@ module dpwm_tb();
 	initial begin
         #1 clk = 1'b0;
         #1 enable = 1'b1;
-        #1 dt1 = 5'b8;
-        #1 dt2 = 5'b10;
-        #1 ton = 5'b680;
+        #1 dt1 = 5'd8;
+        #1 dt2 = 5'd10;
+        #1 ton = 11'd680;
         #5 reset = 1'b1;
         #5 reset = 1'b0;
 	end
@@ -35,7 +35,7 @@ module dpwm_tb();
 
 
     initial
-    #1200 $stop; 
+    #2000 $stop; 
 	
 
 endmodule

@@ -17,7 +17,7 @@ module dpwm
     assign CONST_TS = 11'd1000;
 
     wire cntrl_ts_last, cntrl_dt1_on, cntrl_dt2_on, cntrl_ton;
-    assign cntrl_ts_last = count == ts - 1'd1;
+    assign cntrl_ts_last = count == CONST_TS - 1'd1;
     assign cntrl_dt1_on = count < i_dt1;  
     assign cntrl_dt2_on = ~cntrl_ton & (count < (ton + i_dt1 + i_dt2)); 
     assign cntrl_ton = count < (ton + i_dt1);

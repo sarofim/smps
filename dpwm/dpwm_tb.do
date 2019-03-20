@@ -1,7 +1,6 @@
 vlib work
 vlog dpwm_tb.v
 vlog dpwm.v
-vlog pll.v
 vsim -novopt dpwm_tb
 # See testbench inputs/outputs
 add wave /dpwm_tb/*
