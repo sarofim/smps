@@ -19,7 +19,7 @@ module soft_start
     (
         .clk(i_clk), 
         .reset(reset), 
-        .i_enable(cycle_delay_done),
+        .i_enable(i_enable && cycle_delay_done),
         .i_val(CONST_DUTY_LIM),
         .o_val(o_duty_sel),
         .done(o_done)   
