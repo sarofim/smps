@@ -17,7 +17,6 @@ module open_loop_noss
         .i_sel(i_sw_dt1),
         .o_dt(dp_dt1)
     );
-
     dt_mux mux_dt2
     (
         .i_sel(i_sw_dt2),
@@ -31,7 +30,6 @@ module open_loop_noss
         o_ton(dp_ton)
     );
 
-    wire dp_cntrl_ts_last;
     dpwm pwn_gen
     (
         .i_clk(clk),

@@ -29,7 +29,7 @@ module soft_start
     (
         .clk(i_clk),
         .reset(reset),
-        .i_enable(ts_done),
+        .i_enable(i_enable && ts_done),
         .i_val(NUM_CYCLES),
         .done(cycle_delay_done)
     );

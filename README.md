@@ -1,2 +1,3 @@
 # smps
-ece533 power electronics course project. switch mode power supply with altera de2 board.
+ece533 power electronics - switch mode power supplies course project. 
+boost converter with digital control via an altera de2 board.

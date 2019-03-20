@@ -10,7 +10,7 @@ module main(SW, KEY0, KEY1, LEDR, GPIO_0);
     wire clk_200;
     pll ppl_double(.inclk0(CLOCK_50), .c0(clk_200));
 
-    module open_loop_noss
+    open_loop_noss ol
     (
     .clk(clk_200),
     .rst(~KEY0),

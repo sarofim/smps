@@ -1,8 +1,8 @@
 module ol_duty_sel
 (
     input [7:0] i_sel,
-    output [10:0] o_ton
-)
+    output reg [10:0] o_ton
+);
     always@(*) begin
         case (i_sel)
             8'd0:	o_ton <= 0;
@@ -256,11 +256,11 @@ module ol_duty_sel
             8'd248: o_ton <=	973;
             8'd249: o_ton <=	976;
             8'd250: o_ton <=	980;
-            8'd251: o_ton <=	984;
-            8'd252: o_ton <=	988;
+            8'd2ss_duty_selss_duty_sel51: o_ton <=	984;
+            8'd252: o_tss_duty_selon <=	988;
             8'd253: o_ton <=	992;
             8'd254: o_ton <=	996;
             8'd255: o_ton <=	100;
         endcase
     end
-endmodule;
+endmodule
