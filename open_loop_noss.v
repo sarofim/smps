@@ -38,7 +38,6 @@ module open_loop_noss
         .i_ton(dp_ton),
         .i_dt1(dp_dt1),
         .i_dt2(dp_dt2),
-        .o_cntrl_ts_last(dp_cntrl_ts_last),
         .c1(o_c1),
         .c2(o_c2)
     );
