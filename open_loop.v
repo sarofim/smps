@@ -51,8 +51,8 @@ module open_loop(
         .reset(rst),
         .enable( dp_ss_dpwm_en || dpwm_en), //either soft start enable or user i ennable
         .i_ton(dp_ton),
-        .i_dt1,
-        .i_dt2,
+        .i_dt1(dp_dt1),
+        .i_dt2(dp_dt2),
         .c1(o_c1),
         .c2(o_c2)
     );
