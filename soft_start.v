@@ -7,9 +7,9 @@ module soft_start
     output o_enable,
     output o_done
 );
-    localparam [7:0] CONST_DUTY_LIM = 8'd4;
-    localparam [6:0] NUM_CYCLES = 7'd5;
-    localparam [9:0] CONST_TS = 10'd10;
+    localparam [7:0] CONST_DUTY_LIM = 8'd184;
+    localparam [20:0] NUM_CYCLES = 21'd15000;
+    localparam [9:0] CONST_TS = 10'd1000;
 
     wire cycle_delay_done;
     wire ts_done;
@@ -25,7 +25,7 @@ module soft_start
         .done(o_done)   
     );
 
-    down_counter #(7) cycle_counter
+    down_counter #(21) cycle_counter
     (
         .clk(i_clk),
         .reset(reset),

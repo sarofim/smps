@@ -41,7 +41,7 @@ module open_loop(
     wire [10:0] dp_ton;
     ol_duty_sel mux_duty
     (
-        .i_sel(i_sw_duty),
+        .i_sel(dp_duty_sel),
         .o_ton(dp_ton)
     );
 
