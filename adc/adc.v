@@ -5,10 +5,10 @@ module adc
 
     input read_val, //signal to initiate transaction
 
-    output reg [12:0] v_i,
-    output reg [12:0] v_o,
-    output reg [12:0] temp,
-    output reg [12:0] i_in,
+    output [12:0] v_i,
+    output [12:0] v_o,
+    output [12:0] temp,
+    output [12:0] i_in,
 
     //to gpio
     output miso,   
@@ -39,7 +39,6 @@ adc_dp adc_dp_inst
 (
     .clk(clk),
     .rst(rst),
-
     //com w/ adc_cntrl
     .sel_tx(dp_sel_tx),
     .load_data(dp_load_data),

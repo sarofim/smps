@@ -11,9 +11,9 @@ module adc_cntrl
     output load_data,
 
     //com spi_master
-    output m_enable,
-    output m_rst_n,
-    input  m_busy,
+    output reg m_enable,
+    output reg m_rst_n,
+    input  m_busy
 );
 
 //states
@@ -29,7 +29,7 @@ localparam [2:0]
 
 reg [2:0] state, next_state;
 
-always@ (posedge clk or posedge reset) begin
+always@ (posedge clk or posedge rst) begin
 	if (reset) state <= POWER_UP;
 	else state <= next_state;
 end
