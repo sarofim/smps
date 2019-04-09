@@ -23,6 +23,28 @@ module down_counter
 
 endmodule
 
+module down_counter_shutdown
+#(
+    parameter N = 10
+)
+(
+    input clk,
+    input reset,
+    input load_shutdown,
+    input i_enable,
+    input [N-1:0] i_val,
+    output [N-1:0] o_val,
+    output done
+);
+    assign done = o_val === 0;
+    always@(posedge clk) begin
+        if(reset || done || load_shutdown) o_val <= i_val - 1;
+        else if(i_enable) o_val <= o_val - 1;
+    end
+
+endmodule
+
+
 module up_counter
 #(
     parameter N = 8
@@ -37,7 +59,7 @@ module up_counter
 );
     assign done = o_val === i_val - 1; 
     always@(posedge clk) begin
-        if(reset) o_val <= 0;
+        if(reset || done) o_val <= 0;
         else if(i_enable && ~done) o_val <= o_val + 1;
     end
 

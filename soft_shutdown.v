@@ -1,40 +1,34 @@
 ///////////////////////////////////////////////////////////////////////////////
- // Module: soft_start.v
- // Description: soft start module - slowly ramps duty cycle to avoid overshoot 
- //              and ringing
+ // Module: soft_shutdown.v
+ // Description: soft start module - slowly ramps duty cycle down to 0 
 ///////////////////////////////////////////////////////////////////////////////
-module soft_start
+module soft_shutdown
 (
     input i_clk,
     input i_enable,
     input reset,
-    output reg [9:0] o_duty_sel,
+    input i_load_shutdown,
+    input [9:0] curr_duty,
+    output [9:0] out_duty,
     output o_enable,
     output o_done
 );
-    localparam [9:0] CONST_DUTY_LIM = 10'd718;
-    localparam [20:0] NUM_CYCLES = 14'd5000;
+    localparam [13:0] NUM_CYCLES = 14'd5000;
     localparam [9:0] CONST_TS = 10'd1000;
 
     wire cycle_delay_done;
     wire ts_done;
     assign o_enable = (i_enable) && (o_duty_sel > 0);
 
-    reg [9:0] saved_duty_val;
-    reg [9:0] up_count_out;
-    always@(posedge o_done) begin
-        saved_duty_val <= up_count_out;
-    end
-    assign o_duty_sel = o_done ? saved_duty_val : up_count_out;
-
-    up_counter #(10) duty_sel_counter
+    down_counter_shutdown #(10) shutdown_count
     (
-        .clk(i_clk), 
-        .reset(reset), 
-        .i_enable(i_enable && cycle_delay_done),
-        .i_val(CONST_DUTY_LIM),
-        .o_val(up_count_out),
-        .done(o_done)   
+        .clk(i_clk),
+        .reset(reset),
+        .load_shutdown(i_load_shutdown),
+        .i_enable(i_enable && ts_done),
+        .i_val(curr_duty),
+        .o_val(out_duty),
+        .done(o_done)
     );
 
     down_counter #(14) cycle_counter

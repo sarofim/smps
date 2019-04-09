@@ -17,6 +17,7 @@ cl_duty = 0:0.1:100;
 cl_ton = (cl_duty/100) .* ts; 
 cl_ton_clk = cl_ton ./ t_clk;
 cl_ton_clk_cycles = round(cl_ton_clk);
+cl = [cl_duty; cl_ton_clk];
 
 plot(ol_duty, ol_ton_clk_cycles);
 A = [ol_duty; ol_ton_clk_cycles];

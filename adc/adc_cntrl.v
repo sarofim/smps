@@ -7,7 +7,7 @@ module adc_cntrl
     input read_val,
 
     //com adc_dp
-    output [1:0] sel_tx,
+    output reg [1:0] sel_tx,
     output load_data,
 
     //com spi_master
@@ -49,7 +49,7 @@ always@(*) begin
         INIT_RANGE_REG: begin
             sel_tx = 2'd2;
             m_enable = 1'b1;
-            next_state = INIT_RANGE_REG_WAIT;
+            if(m_busy) next_state = INIT_RANGE_REG_WAIT;
         end
 
         INIT_RANGE_REG_WAIT: begin
@@ -60,7 +60,7 @@ always@(*) begin
         INIT_CONTROL_REG: begin
             sel_tx = 2'd1;
             m_enable = 1'b1;
-            next_state = INIT_CNTRL_REG_WAIT;
+            if(m_busy) next_state = INIT_CNTRL_REG_WAIT;
         end
 
         INIT_CNTRL_REG_WAIT: begin
@@ -69,13 +69,17 @@ always@(*) begin
         end
 
         READ: begin
-            if(read_val) begin
+            //if(read_val) begin
                 m_enable = 1'b01;
-                next_state = READ_WAIT;
-            end
+                if(m_busy) next_state = READ_WAIT;
+            //end
         end
 
-        READ_WAIT: if(!m_busy) next_state = LOAD_REG;
+        READ_WAIT: begin
+            if(!m_busy) next_state = LOAD_REG;
+            //load via data path only
+            ///if(!m_busy) next_state = READ;
+        end
 
         LOAD_REG: begin
             load_data = 1'b1;

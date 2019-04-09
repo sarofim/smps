@@ -55,7 +55,7 @@ adc_dp adc_dp_inst
 );
 
 wire cpol, cpha, cont, clk_div, addr;
-assign cpol = 1'b0;
+assign cpol = 1'b1;
 assign cpha = 1'b0;
 assign cont = 1'b0;
 assign clk_div = 1'b0;
