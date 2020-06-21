@@ -24,7 +24,6 @@ module main(CLOCK_50, SW, KEY0, KEY1, KEY2, LEDR, GPIO_0);
 	//SOFT-START
 	wire ss_done, s_start_en, 
 	assign s_start_en = SW[0];
-	
     soft_start start_inst
     (
         .i_clk(clk_200),
@@ -39,6 +38,7 @@ module main(CLOCK_50, SW, KEY0, KEY1, KEY2, LEDR, GPIO_0);
 	wire [9:0] shutdown_duty;
 	wire s_shutdown_load, s_shutdown_en;
 	assign s_shutdown_load = ~KEY2;
+	assign s_shutdown_en = SW[1];
 	soft_shutdown shutdown_inst
 	(
 		.i_clk(clk_200),
@@ -62,8 +62,7 @@ module main(CLOCK_50, SW, KEY0, KEY1, KEY2, LEDR, GPIO_0);
 		if(s_shutdown_load & ~ s_start_en)
 	end
 
-	wire dpwm_en;
-	assign dpwm_enable = ;
+	reg dpwm_en;
 	dpwm pwn_gen
     (
         .i_clk(clk_200),
@@ -76,11 +75,10 @@ module main(CLOCK_50, SW, KEY0, KEY1, KEY2, LEDR, GPIO_0);
         .c2(o_c2)
     );
 
-
 	//COMPENSATOR
 	wire en_compensator;
 	wire [9:0] comp_d_out;
-	assign en_compensator = SW[];
+	assign en_compensator = SW[2];
 	compensator compensator_dut
 	(
 		.v_sense(adc_vo[11:4]),
@@ -99,7 +97,7 @@ module main(CLOCK_50, SW, KEY0, KEY1, KEY2, LEDR, GPIO_0);
     (
         .clk(clk_10), //
         .rst(~KEY0),
-        .read_val(SW[1]), 
+        .read_val(adc_read_all), 
         .v_i(adc_vin),
         .v_o(adc_vo),
         .temp(adc_temp),
@@ -111,7 +109,6 @@ module main(CLOCK_50, SW, KEY0, KEY1, KEY2, LEDR, GPIO_0);
 		.busy(adc_busy)
     );
 
-
 	assign GPIO_0[0] = o1;
 	assign GPIO_0[1] = o2;
 	assign GPIO_0[2] = clk_10;
@@ -119,6 +116,8 @@ module main(CLOCK_50, SW, KEY0, KEY1, KEY2, LEDR, GPIO_0);
 	assign GPIO_0[18] = adc_clk_out;
 	assign GPIO_0[20] = adc_cs;
 	assign GPIO_0[22] = adc_d_in;
+	assign GPIO_0[17] = load_step_en;
+	assign GPIO_0[17] = load_step_c0;
 
 
 endmodule
